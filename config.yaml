@@ -33,10 +33,19 @@ taxonomies:
 # Replace certain patterns in body
 # Simply replace the key with its value
 body_replace: {
-  # '<pre.*?lang="(.*?)".*?>': '\n{% codeblock \1 lang:\1 %}\n',
-  # '<pre.*?>': '\n{% codeblock %}\n',
-  # '</pre>': '\n{% endcodeblock %}\n',
 
-#    '[python]': '{% codeblock lang:python %}',
-#    '[/python]': '{% endcodeblock %}',
+    # Youtube embed
+    '<iframe.*?src=\"(http(s?):)?//(www.)?youtube.com/embed/([^?\\"]+).*?\".*?height=\"(.*?)\".*?width=\"(.*?)\".*?>.*?</iframe>': '\n[youtube id=\4 height=\5 width=\6]\n',
+    '<iframe.*?src=\"(http(s?):)?//(www.)?youtube.com/embed/([^?\\"]+).*?\".*?width=\"(.*?)\".*?height=\"(.*?)\".*?>.*?</iframe>': '\n[youtube id=\4 height=\6 width=\5]\n',
+
+    '<iframe.*?height=\"(.*?)\".*?width=\"(.*?)\".*?src=\"(http(s?):)?//(www.)?youtube.com/embed/([^?\\"]+).*?\".*?>.*?</iframe>': '\n[youtube id=\6 height=\1 width=\2]\n',
+    '<iframe.*?width=\"(.*?)\".*?height=\"(.*?)\".*?src=\"(http(s?):)?//(www.)?youtube.com/embed/([^?\\"]+).*?\".*?>.*?</iframe>': '\n[youtube id=\6 height=\2 width=\1]\n',
+
+    # Vimeo embed
+    '<iframe.*?src=\"(http(s?):)?//player.vimeo.com/video/([^?\\"]+).*?\".*?width="(.*?)".*?height="(.*?)".*?></iframe>': '\n[vimeo id=\3 width=\4 height=\5]\n',
+    '<iframe.*?src=\"(http(s?):)?//player.vimeo.com/video/([^?\\"]+).*?\".*?height="(.*?)".*?width="(.*?)".*?></iframe>': '\n[vimeo id=\3 width=\5 height=\4]\n',
+
+    '<iframe.*?width="(.*?)".*?height="(.*?)".*?src=\"(http(s?):)?//player.vimeo.com/video/([^?\\"]+).*?\".*?></iframe>': '\n[vimeo id=\5 width=\1 height=\2]\n',
+    '<iframe.*?height="(.*?)".*?width="(.*?)".*?src=\"(http(s?):)?//player.vimeo.com/video/([^?\\"]+).*?\".*?></iframe>': '\n[vimeo id=\5 width=\2 height=\1]\n',
+
 }
